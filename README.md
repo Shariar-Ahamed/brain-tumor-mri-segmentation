@@ -61,8 +61,23 @@ brain-tumor-mri-segmentation/
 
 ---
 
-## ⚙️ Installation & Local Usage
 
+## 📊 Benchmark Leaderboard (BraTS 2021 Validation)
+
+| Model Architecture | Encoder Backbone | Mean Dice Score | Mean IoU | HD95 (mm) ↓ | Robustness Index |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Proposed Hybrid Framework** 🏆 | ResNet34 + Swin Trans. | **0.9320** | **0.8745** | **3.82** | **High (0.912)** |
+| ResNet34-UNet (Baseline 1) | ResNet34 | 0.9211 | 0.8540 | 4.50 | Medium (0.840) |
+| U-Net++ (Baseline 2) | ResNet34 (Nested) | 0.9185 | 0.8490 | 4.62 | Medium (0.832) |
+| SegFormer (Baseline 3) | MiT-B0 Transformer | 0.9140 | 0.8410 | 4.85 | Medium (0.855) |
+| DeepLabV3+ (Baseline 4) | ResNet34 (Atrous) | 0.9050 | 0.8260 | 5.10 | Low (0.780) |
+
+---
+
+## 🚀 Quick Start & Usage
+
+### 1. Installation
+Clone the repository and install dependencies:
 ```bash
 # 1. Clone the Repository
 git clone https://github.com/Shariar-Ahamed/brain-tumor-mri-segmentation.git
