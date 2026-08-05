@@ -79,5 +79,5 @@ full_html = f"""
 </html>
 """
 
-# 5. Render Full-Screen UI (scrolling=False prevents double scrollbars)
+# 5. Render Full-Screen UI
 st.components.v1.html(full_html, height=3200, scrolling=False)
