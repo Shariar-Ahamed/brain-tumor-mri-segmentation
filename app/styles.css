@@ -87,7 +87,7 @@ h1, h2, h3, h4, .font-heading {
 
 /* Navbar */
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -97,8 +97,9 @@ h1, h2, h3, h4, .font-heading {
   align-items: center;
   justify-content: space-between;
   padding: 0 5%;
-  background: rgba(10, 13, 20, 0.92);
+  background: rgba(10, 13, 20, 0.95);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -154,7 +155,7 @@ h1, h2, h3, h4, .font-heading {
 /* Main Layout */
 main {
   margin-top: 70px;
-  padding: 40px 5%;
+  padding: 15px 5% 40px 5%;
 }
 
 /* Hero Section */
@@ -163,7 +164,7 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: center;
-  padding: 40px 0 80px 0;
+  padding: 10px 0 60px 0;
 }
 
 .hero-content h1 {
