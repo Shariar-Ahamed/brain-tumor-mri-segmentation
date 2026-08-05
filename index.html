@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroSeg AI | Unified Explainable & Robust Brain Tumor MRI Segmentation</title>
+  <meta name="description" content="A Unified Explainable and Robust Deep Learning Framework for Multimodal Brain Tumor MRI Segmentation (BraTS 2021)">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo-icon">🧠</div>
+      <div>
+        <span>NeuroSeg <span class="gradient-text">AI</span></span>
+        <span class="badge-tag" style="margin-left: 8px;">Thesis Project</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#hero">Overview</a></li>
+      <li><a href="#studio" class="active">Interactive Studio</a></li>
+      <li><a href="#xai">Grad-CAM++ (XAI)</a></li>
+      <li><a href="#robustness">Robustness Lab</a></li>
+      <li><a href="#leaderboard">Leaderboard</a></li>
+      <li><a href="#team">Thesis Team</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Hero Showcase Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <div style="margin-bottom: 12px;">
+          <span class="badge-tag">BraTS 2021 Benchmark</span>
+          <span class="badge-tag" style="background: rgba(255, 0, 127, 0.1); color: var(--accent-pink); border-color: rgba(255, 0, 127, 0.3);">Hybrid CNN-Transformer</span>
+        </div>
+        <h1>A Unified <span class="gradient-text">Explainable & Robust</span> AI Framework for Brain Tumor MRI Segmentation</h1>
+        <p>A research thesis framework combining high-accuracy multi-modal MRI segmentation (ResNet34 + Swin Transformer + Cross Attention), Grad-CAM++ interpretability, and robust performance benchmarking under imaging perturbations.</p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h3>92.11%</h3>
+            <p>Baseline Validation Dice</p>
+          </div>
+          <div class="stat-item">
+            <h3>1,251</h3>
+            <p>BraTS Patient Cases</p>
+          </div>
+          <div class="stat-item">
+            <h3>4 Modalities</h3>
+            <p>T1, T1ce, T2, FLAIR</p>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#studio" class="btn-primary">Launch Interactive Segmenter 🚀</a>
+          <a href="#robustness" class="btn-secondary">Explore Robustness Lab</a>
+        </div>
+      </div>
+
+      <div class="hero-image-container">
+        <img src="assets/brain_mri_hero.png" alt="Brain Tumor MRI AI Segmentation Interface Showcase">
+        <div class="hero-image-overlay">
+          <div>
+            <span style="font-weight: 700; color: var(--accent-cyan); display: block;">Proposed Hybrid Model</span>
+            <span style="font-size: 0.8rem; color: var(--text-secondary);">ResNet34 + Swin Transformer Bottleneck + Cross-Attention</span>
+          </div>
+          <span class="badge-tag" style="background: var(--accent-green); color: #000;">Active Pipeline</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Studio Section -->
+    <section id="studio" style="padding-top: 40px;">
+      <div class="section-header">
+        <h2>Interactive <span class="gradient-text">Segmentation Studio</span></h2>
+        <p>Select sample MRI volumes, toggle modalities, inspect 2D axial slices, and observe live AI segmentation predictions with multi-region overlay masks.</p>
+      </div>
+
+      <div class="studio-grid">
+        <!-- Control Panel -->
+        <div class="glass-panel control-panel">
+          <div class="control-group">
+            <label>Select Patient Case</label>
+            <select id="caseSelect" class="select-input">
+              <option value="case1">Patient #001 (Glioblastoma Multiforme)</option>
+              <option value="case2">Patient #042 (Lower Grade Glioma)</option>
+              <option value="case3">Patient #108 (Enhancing Core Tumor)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label>MRI Modality (Channel)</label>
+            <div class="modality-selector">
+              <button class="modality-btn active" data-modality="FLAIR">FLAIR</button>
+              <button class="modality-btn" data-modality="T1ce">T1ce</button>
+              <button class="modality-btn" data-modality="T2">T2</button>
+              <button class="modality-btn" data-modality="T1">T1</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>Axial Slice Index: <span id="sliceVal" style="color: var(--accent-cyan);">78</span> / 155</label>
+            <input type="range" id="sliceSlider" min="1" max="155" value="78" class="range-input">
+          </div>
+
+          <div class="control-group">
+            <label>Select AI Model</label>
+            <select id="modelSelect" class="select-input">
+              <option value="Proposed-Hybrid">Proposed Hybrid (CNN + Transformer)</option>
+              <option value="ResNet34-UNet">Baseline: ResNet34-UNet</option>
+              <option value="U-Net++">Baseline: U-Net++</option>
+              <option value="SegFormer">Baseline: SegFormer</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label>Tumor Region Mask Overlays</label>
+            <div class="toggle-group">
+              <div class="toggle-item">
+                <div class="toggle-label">
+                  <span class="color-dot" style="background: var(--accent-yellow);"></span>
+                  <span>Enhancing Tumor (ET)</span>
+                </div>
+                <input type="checkbox" id="chkET" checked>
+              </div>
+              <div class="toggle-item">
+                <div class="toggle-label">
+                  <span class="color-dot" style="background: var(--accent-pink);"></span>
+                  <span>Tumor Core (TC)</span>
+                </div>
+                <input type="checkbox" id="chkTC" checked>
+              </div>
+              <div class="toggle-item">
+                <div class="toggle-label">
+                  <span class="color-dot" style="background: var(--accent-purple);"></span>
+                  <span>Peritumoral Edema (ED)</span>
+                </div>
+                <input type="checkbox" id="chkED" checked>
+              </div>
+            </div>
+          </div>
+
+          <button id="btnRunInference" class="btn-primary" style="margin-top: 10px; width: 100%; justify-content: center;">
+            Run Segmentation Prediction ⚡
+          </button>
+        </div>
+
+        <!-- Dual Viewport Canvases -->
+        <div class="viewports-container">
+          <div class="glass-panel viewport-card">
+            <div class="viewport-header">
+              <h3>Original Multi-Modal MRI Slice</h3>
+              <span id="modalityLabel" class="badge-tag">FLAIR Sequence</span>
+            </div>
+            <div class="canvas-wrapper">
+              <canvas id="mriCanvas" width="380" height="380"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-panel viewport-card">
+            <div class="viewport-header">
+              <h3>AI Segmentation Mask Prediction</h3>
+              <span class="badge-tag" style="background: rgba(0, 230, 118, 0.1); color: var(--accent-green); border-color: rgba(0, 230, 118, 0.3);">Predicted Mask</span>
+            </div>
+            <div class="canvas-wrapper">
+              <canvas id="segCanvas" width="380" height="380"></canvas>
+            </div>
+          </div>
+
+          <!-- Metrics Row -->
+          <div class="metric-cards-grid">
+            <div class="glass-panel metric-card">
+              <h4>Predicted Dice</h4>
+              <p id="mDice">0.9320</p>
+            </div>
+            <div class="glass-panel metric-card">
+              <h4>Mean IoU</h4>
+              <p id="mIoU">0.8745</p>
+            </div>
+            <div class="glass-panel metric-card">
+              <h4>Tumor Volume</h4>
+              <p id="mVol">24.6 cm³</p>
+            </div>
+            <div class="glass-panel metric-card">
+              <h4>Inference Speed</h4>
+              <p id="mTime" style="color: var(--accent-green);">18.4 ms</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- XAI & Robustness Section -->
+    <div class="twocol-grid">
+      <!-- Grad-CAM++ Panel -->
+      <section id="xai" class="glass-panel card-padding">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+          <div>
+            <span class="badge-tag">Explainable AI (XAI)</span>
+            <h2 style="font-size: 1.6rem; margin-top: 5px;">Grad-CAM++ Interpretability</h2>
+          </div>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+          Grad-CAM++ highlights feature map activations in the decoder that drive segmentation predictions for specific tumor classes.
+        </p>
+
+        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+          <select id="xaiClassSelect" class="select-input" style="flex: 1;">
+            <option value="3">Enhancing Tumor (Class 3)</option>
+            <option value="2">Peritumoral Edema (Class 2)</option>
+            <option value="1">Necrotic/Core (Class 1)</option>
+          </select>
+          <input type="range" id="xaiAlpha" min="0.2" max="1.0" step="0.05" value="0.7" class="range-input" style="flex: 1;">
+        </div>
+
+        <div class="canvas-wrapper" style="max-width: 100%; height: 280px; margin: 0 auto;">
+          <canvas id="xaiCanvas" width="380" height="280"></canvas>
+        </div>
+      </section>
+
+      <!-- Robustness Lab Panel -->
+      <section id="robustness" class="glass-panel card-padding">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+          <div>
+            <span class="badge-tag" style="background: rgba(255, 183, 3, 0.1); color: var(--accent-yellow); border-color: rgba(255, 183, 3, 0.3);">Noise Hardened</span>
+            <h2 style="font-size: 1.6rem; margin-top: 5px;">Robustness & Perturbation Testbed</h2>
+          </div>
+        </div>
+
+        <div class="control-group" style="margin-bottom: 15px;">
+          <label>Gaussian Noise Level ($\sigma$): <span id="noiseVal" style="color: var(--accent-yellow);">0.05</span></label>
+          <input type="range" id="noiseSlider" min="0" max="0.3" step="0.01" value="0.05" class="range-input">
+        </div>
+
+        <div class="control-group" style="margin-bottom: 15px;">
+          <label>Motion Blur Kernel: <span id="blurVal" style="color: var(--accent-yellow);">1px</span></label>
+          <input type="range" id="blurSlider" min="1" max="11" step="2" value="1" class="range-input">
+        </div>
+
+        <div class="canvas-wrapper" style="max-width: 100%; height: 220px; margin: 0 auto;">
+          <canvas id="robustnessCanvas" width="380" height="220"></canvas>
+        </div>
+      </section>
+    </div>
+
+    <!-- Leaderboard Table Section -->
+    <section id="leaderboard" style="margin-top: 60px;">
+      <div class="section-header">
+        <h2>Model Benchmarking <span class="gradient-text">Leaderboard</span></h2>
+        <p>Comprehensive comparison of the Proposed Hybrid Framework against standard CNN and Transformer baselines on the BraTS 2021 dataset.</p>
+      </div>
+
+      <div class="glass-panel" style="overflow-x: auto;">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>Model Architecture</th>
+              <th>Encoder Backbone</th>
+              <th>Mean Dice Score</th>
+              <th>Mean IoU</th>
+              <th>HD95 (mm) ↓</th>
+              <th>Robustness Score</th>
+              <th>XAI Transparency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td><strong>Proposed Hybrid Framework</strong> 🏆</td>
+              <td>ResNet34 + Swin Trans.</td>
+              <td><strong style="color: var(--accent-cyan);">0.9320</strong></td>
+              <td>0.8745</td>
+              <td>3.82</td>
+              <td><span class="badge-tag" style="background: rgba(0, 230, 118, 0.1); color: var(--accent-green);">High (0.912)</span></td>
+              <td>Grad-CAM++ Integrated</td>
+            </tr>
+            <tr>
+              <td>ResNet34-UNet (Baseline 1)</td>
+              <td>ResNet34</td>
+              <td>0.9211</td>
+              <td>0.8540</td>
+              <td>4.50</td>
+              <td>Medium (0.840)</td>
+              <td>Post-hoc Only</td>
+            </tr>
+            <tr>
+              <td>U-Net++ (Baseline 2)</td>
+              <td>ResNet34 (Nested)</td>
+              <td>0.9185</td>
+              <td>0.8490</td>
+              <td>4.62</td>
+              <td>Medium (0.832)</td>
+              <td>Post-hoc Only</td>
+            </tr>
+            <tr>
+              <td>DeepLabV3+ (Baseline 3)</td>
+              <td>ResNet34 (Atrous)</td>
+              <td>0.9050</td>
+              <td>0.8260</td>
+              <td>5.10</td>
+              <td>Low (0.780)</td>
+              <td>Limited</td>
+            </tr>
+            <tr>
+              <td>SegFormer (Baseline 4)</td>
+              <td>MiT-B0 Transformer</td>
+              <td>0.9140</td>
+              <td>0.8410</td>
+              <td>4.85</td>
+              <td>Medium (0.855)</td>
+              <td>Attention Maps</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Thesis Team Section -->
+    <section id="team" style="margin-top: 60px;">
+      <div class="section-header">
+        <h2>Thesis Team & <span class="gradient-text">Supervisors</span></h2>
+        <p>Department of Computer Science and Engineering, Daffodil International University (FYDP Summer 2025/2026)</p>
+      </div>
+
+      <div class="twocol-grid" style="margin-top: 20px;">
+        <div class="glass-panel card-padding">
+          <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">👥 Student Researchers</h3>
+          <div style="margin-bottom: 15px;">
+            <strong style="font-size: 1.1rem; display: block;">1. Sultana Asma Islam</strong>
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Student ID: 0242310005101682</span>
+          </div>
+          <div>
+            <strong style="font-size: 1.1rem; display: block;">2. Umma Sumaiya Laboni</strong>
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Student ID: 0242310005101568</span>
+          </div>
+        </div>
+
+        <div class="glass-panel card-padding">
+          <h3 style="color: var(--accent-pink); margin-bottom: 15px;">🎓 Project Supervisors</h3>
+          <div style="margin-bottom: 15px;">
+            <strong style="font-size: 1.1rem; display: block;">Md. Abbas Ali Khan</strong>
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Supervisor | Assistant Professor, Dept. of CSE</span>
+          </div>
+          <div>
+            <strong style="font-size: 1.1rem; display: block;">Md. Mizanur Rahman</strong>
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Co-Supervisor | Senior Lecturer, Dept. of CSE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 NeuroSeg AI Project — Daffodil International University (DIU). Developed for FYDP Brain Tumor MRI Research.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

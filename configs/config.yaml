@@ -1,0 +1,42 @@
+dataset:
+  name: "BraTS2021"
+  data_dir: "./data/BraTS2021"
+  cache_dir: "./data/cache"
+  h5_path: "./data/cache/brats2021_cache.h5"
+  modalities: ["T1", "T1ce", "T2", "FLAIR"]
+  image_size: [192, 192]
+  num_channels: 4
+  num_classes: 4
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+  seed: 42
+
+training:
+  batch_size: 8
+  epochs: 30
+  lr: 0.0003
+  weight_decay: 0.0001
+  amp: true
+  early_stopping_patience: 10
+  checkpoint_dir: "./checkpoints"
+  log_dir: "./logs"
+
+models:
+  baseline_list: ["ResNet34-UNet", "U-Net++", "DeepLabV3+", "SegFormer"]
+  selected_model: "Proposed-Hybrid" # Options: ResNet34-UNet, U-Net++, DeepLabV3+, SegFormer, Proposed-Hybrid
+
+proposed_model:
+  backbone: "resnet34"
+  embed_dim: 128
+  num_heads: 4
+  deep_supervision: false
+
+xai:
+  target_layer: "decoder.final_conv"
+  output_dir: "./outputs/xai"
+
+robustness:
+  output_dir: "./outputs/robustness"
+  noise_levels: [0.01, 0.05, 0.1, 0.2]
+  blur_sigmas: [0.5, 1.0, 1.5, 2.0]

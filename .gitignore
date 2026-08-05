@@ -1,0 +1,19 @@
+# Python & PyTorch
+__pycache__/
+*.py[cod]
+*$py.class
+*.pt
+*.pth
+*.onnx
+
+# Data & Checkpoints
+checkpoints/
+data/
+outputs/
+*.h5
+
+# PyTest & Environment
+.pytest_cache/
+.env
+venv/
+.venv/
