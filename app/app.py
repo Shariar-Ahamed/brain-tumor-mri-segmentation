@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Full-Screen CSS Overrides for Seamless UI Rendering
+# Full-Screen & Responsive CSS Overrides
 st.markdown("""
 <style>
     [data-testid="stHeader"], footer, [data-testid="stSidebar"], #MainMenu {
@@ -67,6 +67,7 @@ full_html_bundle = f"""
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
   {css_content}
   </style>

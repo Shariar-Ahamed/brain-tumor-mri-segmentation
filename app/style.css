@@ -129,3 +129,23 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(0, 242, 254, 0.5);
 }
+
+/* Responsive Breakpoints */
+@media (max-width: 991px) {
+  .hero-section, .studio-grid, .twocol-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 4%;
+  }
+  .nav-links {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
