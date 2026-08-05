@@ -17,3 +17,5 @@ outputs/
 .env
 venv/
 .venv/
+scratch/
+
