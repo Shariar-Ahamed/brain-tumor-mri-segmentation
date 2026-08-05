@@ -47,12 +47,12 @@ def load_file_content(filepath):
             return f.read()
     return ""
 
-# Resolve paths
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-html_path = os.path.join(base_dir, "index.html")
-css_path = os.path.join(base_dir, "styles.css")
-js_path = os.path.join(base_dir, "app.js")
-hero_path = os.path.join(base_dir, "assets", "brain_mri_hero.png")
+# Resolve paths inside app directory
+app_dir = os.path.dirname(os.path.abspath(__file__))
+html_path = os.path.join(app_dir, "index.html")
+css_path = os.path.join(app_dir, "styles.css")
+js_path = os.path.join(app_dir, "app.js")
+hero_path = os.path.join(app_dir, "assets", "brain_mri_hero.png")
 
 html_template = load_file_content(html_path)
 css_content = load_file_content(css_path)
