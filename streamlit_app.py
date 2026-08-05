@@ -1,7 +1,13 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import torch
+
+try:
+    import torch  # type: ignore
+    HAS_TORCH = True
+except ImportError:
+    torch = None  # type: ignore
+    HAS_TORCH = False
 
 # 1. Page Configuration
 st.set_page_config(
