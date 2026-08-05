@@ -10,24 +10,34 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Hide Streamlit default header & padding to give full-screen HTML feel
+# 2. Seamless Full-Screen CSS Overrides (Removes Streamlit Padding, Margins & Double Scrollbars)
 st.markdown("""
 <style>
-    [data-testid="stHeader"] {
-        display: none;
+    /* Remove Streamlit Headers, Footers, and Sidebars */
+    [data-testid="stHeader"], footer, [data-testid="stSidebar"], #MainMenu {
+        display: none !important;
     }
-    .main .block-container {
-        padding: 0rem !important;
+    
+    /* Remove All Outer Container Paddings and Margins */
+    html, body, [data-testid="stAppViewContainer"], .main, .main .block-container {
+        padding: 0px !important;
+        margin: 0px !important;
         max-width: 100% !important;
-    }
-    iframe {
-        border: none;
         width: 100% !important;
+        background-color: #0a0d14 !important;
+    }
+
+    /* Force iframe to expand 100% full width seamlessly without borders */
+    .element-container, .stCustomComponentV1, iframe {
+        width: 100% !important;
+        border: none !important;
+        margin: 0px !important;
+        padding: 0px !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# 2. Helper to load and encode files
+# 3. Helper to load and encode files
 def load_file_content(filepath):
     if os.path.exists(filepath):
         with open(filepath, "r", encoding="utf-8") as f:
@@ -40,7 +50,7 @@ def get_base64_image(image_path):
             return f"data:image/png;base64,{base64.b64encode(img_file.read()).decode()}"
     return ""
 
-# 3. Read HTML, CSS, JS & Hero Image
+# 4. Read HTML, CSS, JS & Hero Image
 html_template = load_file_content("index.html")
 css_content = load_file_content("styles.css")
 js_content = load_file_content("app.js")
@@ -55,6 +65,7 @@ full_html = f"""
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <style>
     {css_content}
     </style>
@@ -68,5 +79,5 @@ full_html = f"""
 </html>
 """
 
-# 4. Render Exact HTML UI inside Streamlit
-st.components.v1.html(full_html, height=2200, scrolling=True)
+# 5. Render Full-Screen UI (scrolling=False prevents double scrollbars)
+st.components.v1.html(full_html, height=3200, scrolling=False)
