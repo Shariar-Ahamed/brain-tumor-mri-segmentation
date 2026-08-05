@@ -13,28 +13,21 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Full-Screen & Fixed Viewport Overrides (Forces 100vh iframe and fixed navbar)
+# Streamlit Clean Overrides (Guarantees Instant Blank-Free Rendering)
 st.markdown("""
 <style>
     [data-testid="stHeader"], footer, [data-testid="stSidebar"], #MainMenu {
         display: none !important;
     }
-    html, body, [data-testid="stAppViewContainer"], .main, .main .block-container {
+    .main .block-container {
         padding: 0px !important;
         margin: 0px !important;
-        max-width: 100vw !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        max-height: 100vh !important;
-        overflow: hidden !important;
-        background-color: #0a0d14 !important;
+        max-width: 100% !important;
+        width: 100% !important;
     }
-    .element-container, .stCustomComponentV1, iframe {
-        width: 100vw !important;
-        height: 100vh !important;
+    iframe {
         border: none !important;
-        margin: 0px !important;
-        padding: 0px !important;
+        width: 100% !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -71,7 +64,7 @@ full_html_bundle = f"""
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   {css_content}
   </style>
@@ -85,4 +78,4 @@ full_html_bundle = f"""
 </html>
 """
 
-st.components.v1.html(full_html_bundle, height=1000, scrolling=False)
+st.components.v1.html(full_html_bundle, height=3200, scrolling=True)
