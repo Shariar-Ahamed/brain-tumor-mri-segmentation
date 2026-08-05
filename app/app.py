@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Full-Screen & Responsive CSS Overrides
+# Full-Screen & Fixed Viewport Overrides (Forces 100vh iframe and fixed navbar)
 st.markdown("""
 <style>
     [data-testid="stHeader"], footer, [data-testid="stSidebar"], #MainMenu {
@@ -22,12 +22,16 @@ st.markdown("""
     html, body, [data-testid="stAppViewContainer"], .main, .main .block-container {
         padding: 0px !important;
         margin: 0px !important;
-        max-width: 100% !important;
-        width: 100% !important;
+        max-width: 100vw !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        overflow: hidden !important;
         background-color: #0a0d14 !important;
     }
     .element-container, .stCustomComponentV1, iframe {
-        width: 100% !important;
+        width: 100vw !important;
+        height: 100vh !important;
         border: none !important;
         margin: 0px !important;
         padding: 0px !important;
@@ -81,4 +85,4 @@ full_html_bundle = f"""
 </html>
 """
 
-st.components.v1.html(full_html_bundle, height=2800, scrolling=True)
+st.components.v1.html(full_html_bundle, height=1000, scrolling=False)
