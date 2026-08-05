@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (chkTC.checked) {
       ctx.beginPath();
       ctx.ellipse(tumorX, tumorY, tumorSize * 0.9, tumorSize * 0.8, -0.2, 0, 2 * Math.PI);
-      ctx.fillStyle = isOverlay ? "rgba(255, 0, 127, 0.6)" : "#ff007f";
+      ctx.fillStyle = isOverlay ? "rgba(139, 92, 246, 0.65)" : "#8b5cf6";
       ctx.fill();
     }
 
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mIoU.textContent = "0.8490";
       mVol.textContent = "23.9 cm³";
       mTime.textContent = "28.5 ms";
-      mDice.style.color = "var(--accent-pink)";
+      mDice.style.color = "var(--accent-violet)";
     } else {
       mDice.textContent = "0.9140";
       mIoU.textContent = "0.8410";

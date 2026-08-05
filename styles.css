@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
 
 :root {
   --bg-primary: #0a0d14;
@@ -11,7 +11,7 @@
   --accent-cyan: #00f2fe;
   --accent-blue: #4facfe;
   --accent-purple: #7f00ff;
-  --accent-pink: #ff007f;
+  --accent-violet: #8b5cf6;
   --accent-yellow: #ffb703;
   --accent-green: #00e676;
   
@@ -20,7 +20,7 @@
   --text-muted: #64748b;
   
   --wt-color: rgba(0, 242, 254, 0.6);
-  --tc-color: rgba(255, 0, 127, 0.7);
+  --tc-color: rgba(139, 92, 246, 0.7);
   --et-color: rgba(255, 183, 3, 0.8);
   --ed-color: rgba(127, 0, 255, 0.6);
 
@@ -42,7 +42,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -53,18 +53,20 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, .font-heading {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', 'Outfit', sans-serif;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-pink));
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-violet));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-purple {
-  background: linear-gradient(135deg, #a855f7, #ec4899);
+  background: linear-gradient(135deg, #a855f7, #6366f1);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
