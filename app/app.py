@@ -80,4 +80,4 @@ full_html_bundle = f"""
 </html>
 """
 
-st.components.v1.html(full_html_bundle, height=3200, scrolling=False)
+st.components.v1.html(full_html_bundle, height=2800, scrolling=True)
