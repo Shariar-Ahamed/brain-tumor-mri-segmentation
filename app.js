@@ -33,6 +33,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentModality = "FLAIR";
 
+  // Smooth Scroll & Active Link Handler for Navigation Bar & Buttons
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        const navLink = document.querySelector(`.nav-links a[href="${targetId}"]`);
+        if (navLink) navLink.classList.add('active');
+
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
   // Event Listeners
   sliceSlider.addEventListener("input", (e) => {
     sliceVal.textContent = e.target.value;
