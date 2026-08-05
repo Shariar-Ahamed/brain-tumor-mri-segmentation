@@ -44,9 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const navLink = document.querySelector(`.nav-links a[href="${targetId}"]`);
         if (navLink) navLink.classList.add('active');
 
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+        const navHeight = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: 'smooth'
         });
       }
     });
